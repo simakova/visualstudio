@@ -21,16 +21,16 @@ namespace Num3
             String num = Console.ReadLine();
             N = int.Parse(num);
 //1
-            for (int i = 0; i <= count; i++)
+            for (int i = 0; i < count; i++)
             {
                 while (N%prime[i] == 0)
                 {
                     N = N/prime[i];
                     digits.Add(prime[i]);
                 }
+                if (N == 1) break;
             }
 //2
-            
-        }
+            }
     }
 }
