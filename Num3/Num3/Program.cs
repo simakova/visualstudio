@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,22 +28,45 @@ namespace Num3
             //2 Цикл while с предусловием, что число N делится без остатка
             //j - счетчик каждого простого числа, записывается на позицию соответствующую простому числу массива counter
             // результат = массив counter, содержащий количество простых множителей из которых можно собрать число
-                for (int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
+            {
+                int j = 0;
+                while (N%prime[i] == 0)
                 {
-                    int j = 0;
-                    while (N%prime[i] == 0)
-                    {
-                        N = N/prime[i];
-                        //digits.Add(prime[i]);
-                        j++;
-                    }
-                    counter[prime[i]] = j;
-                    if (N == 1) break;
+                    N = N/prime[i];
+                    //digits.Add(prime[i]);
+                    j++;
                 }
-           //3 сворачиваем простые числа для уменьшения разрядности искомого числа: 2*2*2=8, 3*3=9, 3*2=6, 2*2=4
+                counter[prime[i]] = j;
+                if (N == 1) break;
+            }
+            //3 сворачиваем простые числа для уменьшения разрядности искомого числа: 2*2*2=8, 3*3=9, 3*2=6, 2*2=4
             if (counter[2] != 0)
-                int eight = counter[2] ;
-            counter[prime[eight]] = eight;
+            {
+                counter[8] = counter[2]/3;
+                counter[2] = counter[2]%3;
+            }
+            if (counter[3] != 0)
+            {
+                counter[9] = counter[3]/2;
+                counter[3] = counter[3]%2;
+            }
+            if (counter[2] != 0 && counter[3] != 0)
+            {
+                counter[6] = 6;
+                counter[2] = 0;
+                counter[3] = 0;
+            }
+            if (counter[2] != 0)
+            {
+                counter[4] = counter[2]/2;
+                counter[3] = counter[3]%2;
+            }
+            //4 выводим все не пустые значения массива
+            
+            for (int i=0; i<10; i++) 
+                if (counter[i]!=0)
+                    Console.Write(counter[i]*i);
         }
     }
 }
