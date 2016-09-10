@@ -5,6 +5,6 @@
 №2 - 2066. Простое выражение (Accept)
 
 
-№3 - 1014. Произведение цифр
+№3 - 1014. Произведение цифр (Done. Not accepting??)
 
 http://acm.timus.ru/author.aspx?id=211575
