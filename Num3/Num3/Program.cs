@@ -23,7 +23,7 @@ namespace Num3
 
             String num = Console.ReadLine(); //вводим строку num и преобразуем ее в число N  
             N = int.Parse(num);
-
+            Q = N;
             //1 Цикл for перебирает простые числа из массива prime
             //2 Цикл while с предусловием, что число N делится без остатка
             //j - счетчик каждого простого числа, записывается на позицию соответствующую простому числу массива counter
@@ -38,10 +38,12 @@ namespace Num3
                     j++;
                 }
                 counter[prime[i]] = j;
+
                 if (N == 1) break;
             }
             //3 сворачиваем простые числа для уменьшения разрядности искомого числа: 2*2*2=8, 3*3=9, 3*2=6, 2*2=4
-            if (counter[2] != 0)
+            if (N==Q) Console.Write("-1");
+            else if (counter[2] != 0)
             {
                 counter[8] = counter[2]/3;
                 counter[2] = counter[2]%3;
@@ -63,10 +65,12 @@ namespace Num3
                 counter[3] = counter[3]%2;
             }
             //4 выводим все не пустые значения массива
-            
+          
             for (int i=0; i<10; i++) 
                 if (counter[i]!=0)
                     Console.Write(counter[i]*i);
+                
         }
     }
 }
+
