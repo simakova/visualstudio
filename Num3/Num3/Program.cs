@@ -31,7 +31,7 @@ namespace Num3
             for (int i = 0; i < count; i++)
             {
                 int j = 0;
-                while (N%prime[i] == 0)
+                while (N%prime[i] == 0 && N!=0)
                 {
                     N = N/prime[i];
                     //digits.Add(prime[i]);
@@ -40,9 +40,14 @@ namespace Num3
                 counter[prime[i]] = j;
 
                 if (N == 1) break;
+                
             }
             //3 сворачиваем простые числа для уменьшения разрядности искомого числа: 2*2*2=8, 3*3=9, 3*2=6, 2*2=4
-            if (N==Q) Console.Write("-1");
+            if (N == Q || N >= 10 || N==0)
+            {
+                Console.Write("-1");
+                Array.Clear(counter, 0, 9);
+            }
             else if (counter[2] != 0)
             {
                 counter[8] = counter[2]/3;
